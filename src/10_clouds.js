@@ -56,7 +56,7 @@ void main(){
   col = mix(col, slate, smoothstep(.58, 1., uWater) * .9);
   col *= mix(.36, 1.04, smoothstep(-.02, .62, up));
   col *= mix(.78, 1.03, h);
-  col = mix(col, col * uGroundCol * 1.7 + .01, (1. - up) * .42);
+  col = mix(col, col * uGroundCol * 1.5 + .006, (1. - up) * .5);
   col = mix(col, col * vec3(.7, .74, .82), (1. - up) * .3);
   col *= mix(.6, 1., smoothstep(-.62, .12, vY));
   col *= 1. - uStorm * .7;
@@ -75,7 +75,7 @@ void main(){
   col *= .975 + hash(floor(vW.xz * 11. + vW.y * 6.)) * .05;
   float edge = 1. - smoothstep(.08, .78, fres);
   float a = clamp(edge, 0., 1.) * (.82 + .18 * smoothstep(.1, .55, up)) * (1. + uStorm * .5);
-  a *= smoothstep(-.62, -.3, vY + sin(vW.x * 3.1 + uTime) * .05);
+  a *= smoothstep(-.52, -.16, vY + sin(vW.x * 3.1 + uTime) * .05);
   a *= .86 + .28 * hash(floor(vW.xz * 8. + vW.y * 4.));
   a *= 1. - smoothstep(.7, 1., uDissolve) * smoothstep(.35, .85, hash(floor(vW.xz * 14.)));
   gl_FragColor = vec4(col, a * uOpacity);
@@ -151,8 +151,8 @@ C.spawn = function (pos, size) {
     map: WG.tex.contact, color: WG.col('#4a515b'), transparent: true, opacity: .3, depthWrite: false
   }));
   baseDisc.rotation.x = Math.PI / 2;
-  baseDisc.position.y = -r * .55;
-  baseDisc.scale.set(r * 2.6, r * 1.7, 1);
+  baseDisc.position.y = -r * .5;
+  baseDisc.scale.set(r * 2.2, r * 1.5, 1);
   group.add(baseDisc);
   const pick = new THREE.Mesh(new THREE.SphereGeometry(r * 1.45, 8, 6), new THREE.MeshBasicMaterial({ visible: false }));
   group.add(pick);
@@ -416,7 +416,7 @@ WG.register('clouds', {
       c.u.uSunCol.value.copy(WG.cols.sunlight).lerp(WG.cols.moon, S.night).multiplyScalar(.55 + S.daylight * .65);
       c.u.uPeach.value = S.golden; c.u.uNight.value = S.night;
       c.u.uOpacity.value = c.opacity;
-      c.baseDisc.material.opacity = c.opacity * (.1 + c.water * .26);
+      c.baseDisc.material.opacity = c.opacity * (.05 + c.water * .17);
       c.tower.visible = c.storm > .08; c.anvil.visible = c.storm > .25;
       const lidY = 7.2;
       const baseTop = c.pos.y + c.size * .9;

@@ -83,7 +83,10 @@ const GLOWS = ['rgba(233,150,178,.5)', 'rgba(143,187,108,.5)', 'rgba(222,139,66,
 
 /* ---------------- DOM ---------------- */
 const title = $('div', 'wg-title', 'Weatherglass');
-const build = $('div', 'wg-build', 'DeepSeek V4.1 Flash 1017 · FP8 weights · Max effort · 4× DGX Spark · run 2 · 7 h 30 min');
+const build = $('a', 'wg-build', 'DeepSeek V4.1 Flash 1017 · FP8 weights · Max effort · 4× DGX Spark · run 2 · 7 h 30 min');
+build.href = 'https://github.com/todsawat/weatherglass-DS41Flash-FP8-Max';
+build.target = '_blank'; build.rel = 'noopener';
+build.title = 'This build: DeepSeek V4.1 Flash 1017 · FP8 · Max effort · 4× DGX Spark · experiment run 2 · 7 h 30 min';
 root.appendChild(build);
 const actions = $('div', 'wg-actions wg-panel');
 actions.setAttribute('role', 'group');
