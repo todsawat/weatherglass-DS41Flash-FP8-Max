@@ -1,0 +1,11 @@
+{
+  "name": "weatherglass-build",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}
