@@ -8136,10 +8136,13 @@ WG.register('clouds', {
       c.u.uOpacity.value = c.opacity;
       c.baseDisc.material.opacity = c.opacity * (.1 + c.water * .26);
       c.tower.visible = c.storm > .08; c.anvil.visible = c.storm > .25;
-      c.tower.scale.set(c.size * .4, c.size * (1.0 + c.storm * .6), c.size * .4);
+      const lidY = 7.2;
+      const baseTop = c.pos.y + c.size * .9;
+      const towerH = Math.max(.14, Math.min(c.size * (1.0 + c.storm * .6), lidY - baseTop - c.size * .2));
+      c.tower.scale.set(c.size * .4, towerH, c.size * .4);
+      c.tower.position.y = c.size * .9 + towerH * .45;
       c.anvil.scale.set(c.size * (1.05 + c.storm * .5), c.size * .13, c.size * (.8 + c.storm * .3));
-      c.anvil.position.y = c.size * (1.7 + c.storm * .8);
-      c.tower.position.y = c.size * (.9 + c.storm * .3);
+      c.anvil.position.y = Math.min(c.size * (1.7 + c.storm * .8), Math.max(c.size * 1.05, lidY - c.pos.y - c.size * .18));
       c.mat.uniforms.uTime.value = t;
       for (let li = 0; li < c.lobes.length; li++) {
         const l = c.lobes[li];
